@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User Registration</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.container {
+	background: #fff;
+	padding: 25px;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	width: 320px;
+	text-align: left;
+}
+
+h1 {
+	color: #333;
+	margin-bottom: 15px;
+	font-size: 22px;
+	text-align: center;
+}
+
+label {
+	display: block;
+	margin-top: 8px;
+	margin-bottom: 3px;
+	font-weight: bold;
+	color: #444;
+	font-size: 13px;
+}
+
+input[type="text"], input[type="tel"], input[type="password"] {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 6px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	outline: none;
+	font-size: 13px;
+	transition: 0.3s;
+}
+
+input[type="text"]:focus, 
+input[type="tel"]:focus, 
+input[type="password"]:focus {
+	border-color: #6a11cb;
+	box-shadow: 0 0 6px rgba(106, 17, 203, 0.3);
+}
+
+input[type="submit"] {
+	width: 100%;
+	border: none;
+	padding: 10px;
+	margin-top: 12px;
+	border-radius: 6px;
+	font-size: 14px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+/* Register button */
+input[value="Register"] {
+	background: linear-gradient(135deg, #6a11cb, #2575fc);
+	color: white;
+}
+
+input[value="Register"]:hover {
+	background: linear-gradient(135deg, #2575fc, #6a11cb);
+}
+
+/* Back to Home button */
+input[value="Back to Home Page"] {
+	background-color: #2196F3;
+	color: white;
+	font-size: 15px;
+	margin-top: 10px;
+}
+
+input[value="Back to Home Page"]:hover {
+	background-color: #1976D2;
+}
+
+span {
+	color: red;
+	font-size: 12px;
+	display: block;
+	margin-bottom: 5px;
+}
+
+#reg {
+	color: green;
+	margin-top: 10px;
+	font-weight: bold;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>User Registration</h1>
+		<form action="userregistrationrequest">
+			<label>First Name</label>
+			<input type="text" name="firstName" placeholder="FirstName">
+			<span th:text="${allFieldErrors!=null?allFieldErrors['firstName']:' '}"></span>
+
+			<label>Last Name</label>
+			<input type="text" name="lastName" placeholder="Last Name">
+			<span th:text="${allFieldErrors!=null?allFieldErrors['lastName']:' '}"></span>
+
+			<label>Email Id</label>
+			<input type="text" name="emailId" placeholder="Email Id">
+			<span th:text="${allFieldErrors!=null?allFieldErrors['emailId']:' '}"></span>
+
+			<label>Gender</label>
+			<input type="text" name="gender" placeholder="Gender">
+			<span th:text="${allFieldErrors!=null?allFieldErrors['gender']:' '}"></span>
+
+			<label>Mobile Number</label>
+			<input type="tel" name="mobileNumber" placeholder="Mobile Number">
+			<span th:text="${allFieldErrors!=null?allFieldErrors['mobileNumber']:' '}"></span>
+
+			<label>Address</label>
+			<input type="text" name="address" placeholder="Address">
+			<span th:text="${allFieldErrors!=null?allFieldErrors['address']:' '}"></span>
+
+			<label>Password</label>
+			<input type="password" name="password" placeholder="Password">
+			<span th:text="${allFieldErrors!=null?allFieldErrors['password']:' '}"></span>
+
+			<input type="submit" value="Register">
+			<div id="reg" th:text="${registrationstatus}"></div>
+		</form>
+
+		<form action="homepage" method="get">
+			<input type="submit" value="Back to Home Page">
+		</form>
+	</div>
+</body>
+</html>

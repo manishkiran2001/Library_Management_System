@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User Cart Page</title>
+<style>
+/* GENERAL PAGE STYLING */
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: #f2f4f8;
+	padding: 20px;
+	margin: 0;
+	color: #333;
+}
+
+/* HEADING */
+h1 {
+	text-align: center;
+	background-image: linear-gradient(90deg, #ff416c, #ff4b2b);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	font-weight: bold;
+	font-size: 2em;
+	margin-bottom: 20px;
+}
+
+/* TABLE STYLING */
+#bookTable {
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	background: #fff;
+	border-radius: 8px;
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+#bookTable th, #bookTable td {
+	border-bottom: 1px solid #ddd;
+	padding: 10px 12px;
+	text-align: left;
+}
+
+#bookTable th {
+	background-color: #1976D2;
+	color: white;
+	font-weight: 600;
+}
+
+#bookTable tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+#bookTable tr:hover {
+	background-color: #e3f2fd;
+}
+
+/* BUTTON STYLING */
+input[type="submit"] {
+	padding: 7px 14px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: bold;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove Button */
+form[action="deletebookincart"] input[type="submit"] {
+	background-color: #ff5722;
+	color: white;
+}
+
+form[action="deletebookincart"] input[type="submit"]:hover {
+	background-color: #e64a19;
+	transform: scale(1.05);
+}
+
+form[action="deletebookincart"] input[type="submit"]:active {
+	transform: scale(0.95);
+}
+
+/* BACK BUTTON */
+.back-button-form {
+	position: fixed;
+	top: 15px;
+	right: 20px;
+	margin: 0;
+	z-index: 1000;
+}
+
+.back-button-form input[type="submit"] {
+	background-color: #1976D2;
+	color: white;
+	border-radius: 8px;
+	padding: 8px 18px;
+	font-size: 13px;
+	font-weight: bold;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	transition: all 0.2s ease;
+}
+
+.back-button-form input[type="submit"]:hover {
+	background-color: #1565C0;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.back-button-form input[type="submit"]:active {
+	transform: translateY(0) scale(0.95);
+}
+
+/* EMPTY CART MESSAGE */
+.empty-cart-msg {
+	text-align: center;
+	color: #ff5722;
+	font-size: 18px;
+	margin: 20px 0;
+	font-weight: bold;
+	background-color: #fff3e0;
+	padding: 10px 15px;
+	border-radius: 6px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* TOTAL PRICE STYLING */
+.total_price {
+	margin-top: 20px;
+	text-align: right;
+	font-size: 18px;
+	font-weight: bold;
+	color: #1976D2;
+	background-color: #e3f2fd;
+	padding: 12px 18px;
+	border-radius: 8px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+	display: inline-block;
+	float: right;
+}
+
+/* BUY NOW BUTTON */
+.place_order_button {
+	margin-top: 25px;
+	text-align: right;
+	clear: both;
+}
+
+.place_order_button input[type="submit"] {
+	background-image: linear-gradient(90deg, #ff416c, #ff4b2b);
+	color: #fff;
+	border-radius: 8px;
+	padding: 10px 22px;
+	font-size: 14px;
+	font-weight: bold;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transition: all 0.3s ease;
+}
+
+.place_order_button input[type="submit"]:hover {
+	background-image: linear-gradient(90deg, #ff4b2b, #ff416c);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.place_order_button input[type="submit"]:active {
+	transform: translateY(0) scale(0.95);
+}
+</style>
+</head>
+<body>
+	<h1>User Cart</h1>
+
+	<!-- Display empty cart message -->
+	<div th:if="${emptycartmsg}" class="empty-cart-msg"
+		th:text="${emptycartmsg}"></div>
+
+	<table id="bookTable"
+		th:if="${allbookdetails != null and !allbookdetails.isEmpty()}">
+		<tr>
+			<th>Book Title</th>
+			<th>Book Author</th>
+			<th>Book Category</th>
+			<th>Book Language</th>
+			<th>No. of Pages</th>
+			<th>Book Price</th>
+			<th>Remove From Cart</th>
+		</tr>
+		<tr th:each="book:${allbookdetails}">
+			<td th:text="${book.bookTitle}"></td>
+			<td th:text="${book.bookAuthor}"></td>
+			<td th:text="${book.bookCategory}"></td>
+			<td th:text="${book.bookLanguage}"></td>
+			<td th:text="${book.bookPages}"></td>
+			<td th:text="${book.bookPrice}"></td>
+			<td>
+				<form action="deletebookincart">
+					<input type="hidden" th:value="${book.bookId}" name="bookId">
+					<input type="hidden" th:value="${userId}" name="userId"> <input
+						type="submit" value="Remove">
+				</form>
+			</td>
+		</tr>
+	</table>
+	<div th:if="${totalprice != 0}" class="total_price"
+     th:text="'Total Price: ₹' + ${totalprice}"></div>
+
+
+	<form action="allbookdetails" method="get" class="back-button-form">
+		<input type="hidden" th:value="${userId}" name="userId"> <input
+			type="submit" value="Back to All Books">
+	</form>
+
+	<form action="buypage" method="get" class="place_order_button">
+		<input type="hidden" th:value="${userId}" name="userId"> <input
+			type="submit" value="Buy Now">
+	</form>
+</body>
+</html>

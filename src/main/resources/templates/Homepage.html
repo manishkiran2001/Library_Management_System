@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Library Management System - Home</title>
+<style>
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: linear-gradient(135deg, #89f7fe, #66a6ff);
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	background: #ffffffdd; /* slightly transparent white */
+	padding: 50px 40px;
+	border-radius: 20px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	width: 360px;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+	color: #333;
+	margin-bottom: 35px;
+	font-size: 26px;
+	background: linear-gradient(90deg, #ff512f, #dd2476);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.btn {
+	width: 100%;
+	padding: 14px;
+	margin: 12px 0;
+	background: linear-gradient(90deg, #43e97b, #38f9d7);
+	color: white;
+	border: none;
+	border-radius: 12px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.btn-secondary {
+	background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.btn-secondary:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+form {
+	margin: 0;
+}
+</style>
+
+</head>
+<body>
+	<div class="container">
+		<h1>Library Management System</h1>
+
+		<form action="userregistrationpage" method="post">
+			<button type="submit" class="btn">User Registration</button>
+		</form>
+
+		<form action="adminloginpage">
+			<button type="submit" class="btn btn-secondary">Admin Login</button>
+		</form>
+		
+			<form action="userloginpage">
+			<button type="submit" class="btn btn-secondary">User Login</button>
+		</form>
+	</div>
+</body>
+</html>

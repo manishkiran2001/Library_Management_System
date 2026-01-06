@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Options</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .payment-container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        p span {
+            font-weight: bold;
+            color: #2d6cdf;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background-color: #2d6cdf;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1e4fbf;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="payment-container">
+        <h2>Pay for Your Books</h2>
+        <p>Total Amount: ₹<span th:text="${totalAmount}"></span></p>
+
+        <form action="/pay" method="post">
+            <input type="hidden" name="userId" th:value="${userId}"/>
+            <input type="hidden" name="orderAmount" th:value="${totalAmount}"/>
+            <input type="submit" value="Pay Now"/>
+        </form>
+    </div>
+
+</body>
+</html>

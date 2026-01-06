@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>All Book Details User</title>
+<style>
+/* GENERAL PAGE STYLING */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f2f4f8;
+    padding: 20px;
+    margin: 0;
+    color: #333;
+}
+
+/* WELCOME HEADING */
+h1.Headings {
+    text-align: center;
+    background-image: linear-gradient(90deg, #ff416c, #ff4b2b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 5px 0 15px 0; /* compact spacing */
+}
+
+/* SEARCH BAR */
+#searchBar {
+    width: 100%;
+    max-width: 350px;
+    display: block;
+    margin: 0 auto 20px auto; /* center */
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+#searchBar:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 5px rgba(33,150,243,0.5);
+}
+
+/* CART ICON (previous style restored) */
+.cart-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+    transition: 100ms;
+}
+
+.cart-container:hover {
+    transform: scale(1.05);
+}
+
+.cart-container:active {
+    transform: scale(1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #ff5722;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 7px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* TABLE STYLING */
+#bookTable {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px; /* move table to top side */
+}
+
+#bookTable th, #bookTable td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+#bookTable th {
+    background-color: #1976D2;
+    color: white;
+    font-weight: 600;
+}
+
+#bookTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#bookTable tr:hover {
+    background-color: #e3f2fd;
+}
+
+/* BUTTON STYLING */
+input[type="submit"] {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Add to Cart Button */
+form[action="addtocart"] input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+}
+form[action="addtocart"] input[type="submit"]:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+form[action="addtocart"] input[type="submit"]:active {
+    transform: scale(0.95);
+}
+
+/* Buy Button */
+form[action="buybook"] input[type="submit"] {
+    background-color: #ff5722;
+    color: white;
+}
+form[action="buybook"] input[type="submit"]:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+form[action="buybook"] input[type="submit"]:active {
+    transform: scale(0.95);
+}
+
+/* BACK BUTTON */
+.back-button-form {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    margin: 0;
+    z-index: 1000;
+}
+.back-button-form input[type="submit"] {
+    background-color: #1976D2;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+.back-button-form input[type="submit"]:hover {
+    background-color: #1565C0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}
+.back-button-form input[type="submit"]:active {
+    transform: translateY(0) scale(0.95);
+}
+
+
+</style>
+
+
+<script src="/js/AllBookDetailsUser.js" defer></script>
+</head>
+<body>
+
+     <form action=cartpage>
+     <input type="hidden" th:value="${userId}" name="userId">
+	<button type="submit">
+	<div class="cart-container">
+		<span class="cart-count" th:text="${cartcount}"></span> 🛒
+	</div>
+	</button>
+	
+     </form>
+
+
+	<h1 class="Headings">
+		WELCOME <span th:text="${username}"></span>
+	</h1>
+
+	<div th:if="${addBookToCartStatus != null}" class="status-message"
+		th:text="${addBookToCartStatus}"></div>
+
+	<input type="text" id="searchBar" placeholder="Search books...">
+
+	<table id="bookTable">
+		<tr>
+			<th>Book Title</th>
+			<th>Book Author</th>
+			<th>Book Category</th>
+			<th>Book Language</th>
+			<th>NoOfPages</th>
+			<th>Book Price</th>
+			<th>Cart</th>
+			<th>Buy</th>
+		</tr>
+		<tr th:each="book:${allBookDetails}" class="Data_Rows">
+			<td th:text="${book.bookTitle}"></td>
+			<td th:text="${book.bookAuthor}"></td>
+			<td th:text="${book.bookCategory}"></td>
+			<td th:text="${book.bookLanguage}"></td>
+			<td th:text="${book.bookPages}"></td>
+			<td th:text="${book.bookPrice}+'₹'"></td>
+			<td>
+				<form action="addtocart" method="post">
+					<input type="hidden" th:value="${book.bookId}" name="bookId">
+					<input type="hidden" th:value="${userId}" name="userId"> 
+					<input type="submit" value="Add to Cart">
+				</form>
+			</td>
+			<td>
+				<form action="buybook">
+					<input type="hidden" th:value="${book.bookId}" name="bookId">
+					<input type="submit" value="Buy">
+				</form>
+			</td>
+		</tr>
+	</table>
+
+	<form action="userloginpage" method="get" class="back-button-form">
+		<input type="submit" value="Back to User Login">
+	</form>
+</body>
+</html>

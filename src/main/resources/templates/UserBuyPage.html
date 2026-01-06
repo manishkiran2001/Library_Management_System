@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .payment-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+            width: 350px;
+        }
+
+        .payment-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #4CAF50;
+            background: #f9fff9;
+        }
+
+        .payment-option input {
+            margin-right: 12px;
+        }
+
+        .place_order_button input[type="submit"] {
+            display: block;
+            margin: 25px auto 0;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .place_order_button input[type="submit"]:hover {
+            background: #45a049;
+        }
+
+        .buy_msg {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h2>Select Payment Method</h2>
+
+        <label class="payment-option">
+            <input type="radio" name="payment" value="card"> Credit/Debit Card
+        </label>
+
+        <label class="payment-option">
+            <input type="radio" name="payment" value="upi"> UPI Payment
+        </label>
+
+        <label class="payment-option">
+            <input type="radio" name="payment" value="cod"> Cash on Delivery
+        </label>
+
+        <form action="buyrequest" method="get" class="place_order_button">
+            <input type="submit" value="Proceed to Pay">
+        </form>
+
+        <div th:if="${buymsg}" class="buy_msg" th:text="${buymsg}"></div>
+    </div>
+
+</body>
+</html>
