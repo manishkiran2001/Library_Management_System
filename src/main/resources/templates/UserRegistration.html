@@ -110,7 +110,7 @@ span {
 <body>
 	<div class="container">
 		<h1>User Registration</h1>
-		<form action="userregistrationrequest">
+		<form action="userregistrationrequest" method="post">
 			<label>First Name</label>
 			<input type="text" name="firstName" placeholder="FirstName">
 			<span th:text="${allFieldErrors!=null?allFieldErrors['firstName']:' '}"></span>

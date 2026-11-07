@@ -161,6 +161,7 @@ span {
     <div class="welcome-msg" th:text="'Welcome, ' + ${loginmsg}" name="adminName"></div>
 
     <form action="insertbookdetails" class="add-book-form">
+        <input type="hidden" name="adminName" th:value="${loginmsg}">
         <label>Book Title</label> 
         <input type="text" name="bookTitle" placeholder="Book Title"> 
         <span th:text="${allFieldErrors!=null?allFieldErrors['bookTitle']:' '}"></span>

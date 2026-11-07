@@ -27,4 +27,9 @@ public class BookDetailsDAO {
 	{
 		bookDetailsRepository.deleteById(id);
 	}
+
+	public BookDetailsEntity getBookById(int id)
+	{
+		return bookDetailsRepository.findById(id).orElse(null);
+	}
 }

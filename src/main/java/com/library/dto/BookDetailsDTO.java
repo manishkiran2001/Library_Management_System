@@ -17,14 +17,14 @@ public class BookDetailsDTO {
 	private String bookTitle;
 	@NotBlank(message = "Invalid Author Name")
 	private String bookAuthor;
-	@NotBlank(message = "Invalid Author Name")
+	@NotBlank(message = "Invalid Category")
 	private String bookCategory;
-	@NotBlank(message = "Invalid Author Name")
+	@NotBlank(message = "Invalid Language")
 	private String bookLanguage;
-	@Min(value = 50, message = "pages should be >30")
-	@Max(value = 1000, message = "price should be <1000")
+	@Min(value = 50, message = "Pages should be at least 50")
+	@Max(value = 1000, message = "Pages should not exceed 1000")
 	private int bookPages;
-	@Min(value = 100, message = "price should be >100")
-	@Max(value = 5000, message = "price should be <5000")
+	@Min(value = 100, message = "Price should be at least 100")
+	@Max(value = 5000, message = "Price should not exceed 5000")
 	private int bookPrice;
 }

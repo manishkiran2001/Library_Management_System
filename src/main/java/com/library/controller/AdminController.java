@@ -37,7 +37,8 @@ public class AdminController {
 	}
 
 	@RequestMapping("/bookregistrationpage")
-	public String bookRegistration() {
+	public String bookRegistration(String adminName, Model model) {
+		model.addAttribute("loginmsg", adminName);
 		return "BookDetails";
 	}
 

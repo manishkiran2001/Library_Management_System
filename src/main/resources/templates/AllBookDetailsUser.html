@@ -176,7 +176,7 @@ form[action="buybook"] input[type="submit"]:active {
 </style>
 
 
-<script src="/js/AllBookDetailsUser.js" defer></script>
+<script th:src="@{/js/AllBookDetailsUser.js}" src="/js/AllBookDetailsUser.js" defer></script>
 </head>
 <body>
 
@@ -228,6 +228,7 @@ form[action="buybook"] input[type="submit"]:active {
 			<td>
 				<form action="buybook">
 					<input type="hidden" th:value="${book.bookId}" name="bookId">
+					<input type="hidden" th:value="${userId}" name="userId">
 					<input type="submit" value="Buy">
 				</form>
 			</td>

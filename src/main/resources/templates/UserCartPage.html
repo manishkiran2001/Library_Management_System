@@ -204,7 +204,7 @@ form[action="deletebookincart"] input[type="submit"]:active {
 			</td>
 		</tr>
 	</table>
-	<div th:if="${totalprice != 0}" class="total_price"
+	<div th:if="${totalprice != null and totalprice != 0}" class="total_price"
      th:text="'Total Price: ₹' + ${totalprice}"></div>
 
 
@@ -213,7 +213,8 @@ form[action="deletebookincart"] input[type="submit"]:active {
 			type="submit" value="Back to All Books">
 	</form>
 
-	<form action="buypage" method="get" class="place_order_button">
+	<form action="buypage" method="get" class="place_order_button"
+		th:if="${allbookdetails != null and !allbookdetails.isEmpty()}">
 		<input type="hidden" th:value="${userId}" name="userId"> <input
 			type="submit" value="Buy Now">
 	</form>

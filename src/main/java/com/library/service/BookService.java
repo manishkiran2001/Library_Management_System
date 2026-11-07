@@ -31,4 +31,8 @@ public class BookService {
 	public void deleteBook(int id) {
 		bookDetailsDAO.deleteBook(id);
 	}
+
+	public BookDetailsEntity getBookById(int id) {
+		return bookDetailsDAO.getBookById(id);
+	}
 }
