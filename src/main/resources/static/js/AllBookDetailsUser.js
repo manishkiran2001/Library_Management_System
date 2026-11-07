@@ -1,7 +1,10 @@
 /**
  * 
  */
-document.getElementById("searchBar").addEventListener("keyup", function () {
+document.addEventListener("DOMContentLoaded", function () {
+	const searchBar = document.getElementById("searchBar");
+	if (searchBar) {
+		searchBar.addEventListener("keyup", function () {
 			let filter = this.value.toLowerCase();
 			let rows = document.querySelectorAll("#bookTable .Data_Rows");
 
@@ -10,3 +13,5 @@ document.getElementById("searchBar").addEventListener("keyup", function () {
 				row.style.display = text.includes(filter) ? "" : "none";
 			});
 		});
+	}
+});
