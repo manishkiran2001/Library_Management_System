@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.library.dto.UserCartInfoDTO;
 import com.library.dto.UserInfoDTO;
+import com.library.entity.BookDetailsEntity;
 import com.library.entity.UserInfoEntity;
 import com.library.service.BookService;
 import com.library.service.UserCartService;
@@ -139,6 +140,17 @@ public class UserController {
 	    model.addAttribute("userId", userId);
 	    model.addAttribute("totalAmount", totalAmount);
 	    return "CashfreePaymentPage"; 
+	}
+
+	@RequestMapping("/buybook")
+	public String buyBook(int bookId, @RequestParam(required = false, defaultValue = "0") int userId, Model model) {
+		BookDetailsEntity book = bookService.getBookById(bookId);
+		if (book != null) {
+			model.addAttribute("userId", userId);
+			model.addAttribute("totalAmount", (double) book.getBookPrice());
+			return "CashfreePaymentPage";
+		}
+		return "redirect:/allbookdetails?userId=" + userId;
 	}
 
 }
