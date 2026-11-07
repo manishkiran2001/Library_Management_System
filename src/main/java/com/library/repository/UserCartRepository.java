@@ -15,4 +15,6 @@ public interface UserCartRepository extends JpaRepository<UserCartInfoEntity, In
 	 List<UserCartInfoEntity> findByUserId(int userId);
 	 
 	 void deleteByBookIdAndUserId(int bookId, int userId);
+
+	 void deleteByUserId(int userId);
 }

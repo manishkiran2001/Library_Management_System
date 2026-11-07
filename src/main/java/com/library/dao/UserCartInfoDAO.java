@@ -37,4 +37,9 @@ public class UserCartInfoDAO {
 		userCartRepo.deleteByBookIdAndUserId(bookId, userId);
 	}
 
+	public void clearCartByUserId(int userId)
+	{
+		userCartRepo.deleteByUserId(userId);
+	}
+
 }

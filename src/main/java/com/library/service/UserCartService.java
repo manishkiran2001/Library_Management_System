@@ -51,6 +51,12 @@ public class UserCartService {
 	{
 		userCartInfoDAO.deleteByBookIdAndUserId(bookId, userId);
 	}
+
+	@Transactional
+	public void clearCartByUserId(int userId)
+	{
+		userCartInfoDAO.clearCartByUserId(userId);
+	}
 	
 	public int getTotalPriceOfBooksInCart(int userId)
 	{
