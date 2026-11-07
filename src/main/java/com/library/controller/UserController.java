@@ -38,7 +38,7 @@ public class UserController {
 
 	@RequestMapping("/homepage")
 	public String homePage() {
-		return "HomePage";
+		return "Homepage";
 	}
 
 	@RequestMapping("/userregistrationpage")

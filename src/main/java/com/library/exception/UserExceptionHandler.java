@@ -11,7 +11,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
+import com.library.controller.UserController;
+
+@ControllerAdvice(assignableTypes = UserController.class)
 public class UserExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public String userInvalidExceptionHandler(MethodArgumentNotValidException ex, Model model) {

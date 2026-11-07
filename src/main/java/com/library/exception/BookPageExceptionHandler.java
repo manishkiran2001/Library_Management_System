@@ -11,7 +11,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
+import com.library.controller.AdminController;
+
+@ControllerAdvice(assignableTypes = AdminController.class)
 public class BookPageExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public String bookPageExceptionHandler(MethodArgumentNotValidException ex, Model model) {
