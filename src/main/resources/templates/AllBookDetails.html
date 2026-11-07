@@ -154,6 +154,7 @@ form[action="deletebook"] input[type="submit"]:active {
 			<td>
 				<form action="deletebook">
 					<input type="hidden" th:value="${book.bookId}" name="bookId">
+					<input type="hidden" th:value="${loginmsg}" name="adminName">
 					<input type="submit" value="Delete">
 				</form>
 			</td>

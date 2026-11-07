@@ -61,8 +61,8 @@ public class AdminController {
 	}
 
 	@RequestMapping("/deletebook")
-	public String deleteBookById(int bookId) {
+	public String deleteBookById(int bookId, String adminName) {
 		bookService.deleteBook(bookId);
-		return "redirect:/displayallbookdetails";
+		return "redirect:/displayallbookdetails" + (adminName != null && !adminName.isEmpty() ? "?adminName=" + adminName : "");
 	}
 }

@@ -63,7 +63,7 @@ public class UserController {
 	public String userLoginValidation(String emailId, String password, Model model) {
 		UserInfoEntity userInfoEntity = userService.userLoginValidation(emailId, password);
 		if (userInfoEntity != null) {
-			model.addAttribute("loginstatus", userService.userLoginValidation(emailId, password).getFirstName());
+			model.addAttribute("loginstatus", userInfoEntity.getFirstName());
 			model.addAttribute("allBookDetails", bookService.getAllBookDetails());
 			model.addAttribute("username", userInfoEntity.getFirstName().toUpperCase());
 			model.addAttribute("userId", userInfoEntity.getUserId());
