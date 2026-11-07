@@ -97,6 +97,11 @@
         </form>
 
         <div th:if="${buymsg}" class="buy_msg" th:text="${buymsg}"></div>
+
+        <form th:if="${userId != null}" action="allbookdetails" method="get" style="margin-top: 15px; text-align: center;">
+            <input type="hidden" name="userId" th:value="${userId}">
+            <input type="submit" value="Back to All Books" style="padding: 8px 16px; border: none; background: #2196F3; color: white; border-radius: 6px; cursor: pointer; font-weight: bold;">
+        </form>
     </div>
 
 </body>

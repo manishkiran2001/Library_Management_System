@@ -153,4 +153,11 @@ public class UserController {
 		return "redirect:/allbookdetails?userId=" + userId;
 	}
 
+	@PostMapping("/pay")
+	public String processPayment(@RequestParam int userId, @RequestParam double orderAmount, Model model) {
+		model.addAttribute("userId", userId);
+		model.addAttribute("buymsg", "Payment of ₹" + orderAmount + " Successful! Order Placed.");
+		return "UserBuyPage";
+	}
+
 }
